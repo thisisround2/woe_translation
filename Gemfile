@@ -69,3 +69,5 @@ gem "tailwindcss-rails", "~> 4.3"
 gem "google-cloud-translate"
 
 gem "grover"
+
+gem "pg"
