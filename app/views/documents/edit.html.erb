@@ -1,0 +1,18 @@
+<h1>Edit PDF: <%= @doc.title %></h1>
+
+<div data-controller="editor"
+     data-editor-layout-value="<%= @doc.layout_json.to_json %>"
+     data-editor-save-url-value="<%= update_layout_document_path(@doc) %>"
+     data-editor-export-url-value="<%= export_document_path(@doc) %>">
+
+  <% @doc.layout_json["pages"].each_with_index do |page, idx| %>
+    <div class="page" style="position:relative; border:1px solid #ccc; margin-bottom:20px;">
+      <img src="<%= url_for(@doc.pdf.preview(resize_to_limit: [800, 1000])) %>"
+           style="width:100%; display:block;">
+      <div class="overlay" data-editor-target="overlay" style="position:absolute; inset:0;"></div>
+    </div>
+  <% end %>
+
+  <button data-action="editor#save">Save</button>
+  <button data-action="editor#export">Export</button>
+</div>

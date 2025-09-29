@@ -1,0 +1,37 @@
+<div class="max-w-xl mx-auto mt-12 bg-white shadow-lg rounded-xl p-8">
+  <h1 class="text-2xl font-bold text-gray-800 mb-6">Upload a PDF</h1>
+
+  <%= form_with model: @doc, url: documents_path, local: true, html: { multipart: true }, class: "space-y-6" do |f| %>
+
+    <!-- Title input -->
+    <div>
+      <%= f.label :title, "Title", class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= f.text_field :title,
+            class: "w-full rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+
+    <!-- File upload -->
+    <div>
+      <%= f.label :pdf, "Choose a PDF file", class: "block text-sm font-medium text-gray-700 mb-2" %>
+      <div class="flex items-center justify-center w-full">
+        <label class="flex flex-col items-center px-4 py-6 bg-gray-50 text-blue-600 rounded-lg shadow cursor-pointer hover:bg-blue-50 border border-gray-300">
+          <svg xmlns="http://www.w3.org/2000/svg"
+               class="h-8 w-8 mb-2 text-blue-500"
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6h.1a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+          </svg>
+          <span class="text-sm font-medium">Select PDF</span>
+          <%= f.file_field :pdf, accept: ".pdf", class: "hidden" %>
+        </label>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div>
+      <%= f.submit "Upload",
+            class: "w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition" %>
+    </div>
+
+  <% end %>
+</div>

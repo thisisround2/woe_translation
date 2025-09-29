@@ -1,4 +1,4 @@
-require "google/cloud/translate/v2"
+require "google/cloud/translate/v3"
 
 class TranslationsController < ApplicationController
   MIME_MAP = {
@@ -23,15 +23,24 @@ class TranslationsController < ApplicationController
     content = uploaded.read
 
     #client = Google::Cloud::Translate.new
+
+    client = ::Google::Cloud::Translate::V3::TranslationService::Client.new do |config|
+    config.timeout = 10.0
+    config.rpcs.translate_text.timeout = 20.0
+    config.channel_args = {
+      "grpc.max_receive_message_length" => 10 * 1024 * 1024, # 10 MB
+      "grpc.max_send_message_length"    => 10 * 1024 * 1024  # optional but recommended
+    }
+  end
     
-    client = Google::Cloud::Translate.translation_service
+    #client = Google::Cloud::Translate.translation_service
 
     parent = "projects/748012539858/locations/global"
 
     resp = client.translate_document(
       parent: parent,
       target_language_code: target,
-      source_language_code: source, # nil is OK
+      source_language_code: source,
       document_input_config: {
         mime_type: mime,   # required for byte uploads
         content:   content # raw bytes

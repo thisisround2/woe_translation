@@ -71,3 +71,5 @@ gem "google-cloud-translate"
 gem "grover"
 
 gem "pg"
+
+gem 'hexapdf'

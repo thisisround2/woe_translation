@@ -1,0 +1,25 @@
+{
+    "pages": [
+        {
+            "number": 1,
+            "width": 595,
+            "height": 842,
+            "blocks": [
+                {
+                    "type": "text",
+                    "text": "Hello, world!",
+                    "x": 72,
+                    "y": 770,
+                    "font_size": 18
+                },
+                {
+                    "type": "text",
+                    "text": "This is page 1.",
+                    "x": 72,
+                    "y": 740,
+                    "font_size": 14
+                }
+            ]
+        }
+    ]
+}
